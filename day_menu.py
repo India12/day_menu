@@ -8,7 +8,7 @@ day_menu = {}
 while True:
     food = raw_input("Please enter a dish: ")
     price = raw_input("Please enter a price: ")
-    day_menu[food] = price  # saves food as key and price as it's value in day_menu as dictionary
+    day_menu[food] = price  # saves food as key and price as its value in day_menu as dictionary
 
     try:
         price = float(price.replace(",", "."))
