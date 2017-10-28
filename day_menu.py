@@ -1,19 +1,25 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
+import collections
+
 print("Today's menu").upper()
 
-day_menu = {}
+day_menu = collections.OrderedDict() # An OrderedDict considers the order the items were added
 
 while True:
     food = raw_input("Please enter a dish: ")
-    price = raw_input("Please enter a price: ")
-    day_menu[food] = price  # saves food as key and price as its value in day_menu as dictionary
 
-    try:
-        price = float(price.replace(",", "."))
-    except Exception as e:
-        price = raw_input("Please enter only a number. Enter a price: ") # Kako usmerim program na zgornji price - raw_input?.. Na tem spodnjem cele številke ne prikaže kot float.
+    while True:
+        price = raw_input("Please enter a price: ")
+
+        try:
+            price = float(price.replace(",", "."))
+        except Exception as e:
+            continue
+        else:
+            day_menu[food] = price  # saves food as key and price as its value in day_menu as dictionary
+            break
 
     new = raw_input("Would you like to enter another dish? (y/n) ").lower()
 
@@ -29,7 +35,3 @@ with open("day_menu.txt", "w+") as day_menu_file:
             print ("price: " + str(day_menu[food]) + " €")
             i += 1
             day_menu_file.write(str(i-1) + ". " + food + ",  price: " + str(day_menu[food]) + " €" + "\n")
-
-# Kako urediti izpis po vrstnem redu vnosa?
-
-
